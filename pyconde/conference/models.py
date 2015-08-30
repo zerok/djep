@@ -7,7 +7,7 @@ from django import forms
 from django.utils.timezone import now
 from django.utils.translation import ugettext, ugettext_lazy as _
 
-from timezones.fields import TimeZoneField
+# from timezones.fields import TimeZoneField
 
 # from pyconde import south_rules  # keep to make South still work ## gli: not used in 1.8
 
@@ -45,8 +45,8 @@ class Conference(models.Model):
     start_date = models.DateField(_("start date"), null=True, blank=True)
     end_date = models.DateField(_("end date"), null=True, blank=True)
 
-    # timezone the conference is in
-    timezone = TimeZoneField(_("timezone"), blank=True)
+#   # timezone the conference is in
+#   timezone = TimeZoneField(_("timezone"), blank=True)
 
     reviews_start_date = models.DateTimeField(null=True, blank=True)
     reviews_end_date = models.DateTimeField(null=True, blank=True)
