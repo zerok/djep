@@ -84,7 +84,7 @@ class Base(Configuration):
         'django.contrib.sessions',
         'django.contrib.sites',
         'django.contrib.staticfiles',
-        'django.contrib.markup',
+#       'django.contrib.markup',   ## gli: no contrib.markup in django 1.8
         'sortedm2m',
         'crispy_forms',
         'south',

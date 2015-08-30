@@ -1,7 +1,7 @@
 import logging
 
 from django.conf import settings
-from django.contrib.markup.templatetags.markup import markdown
+# from django.contrib.markup.templatetags.markup import markdown ## gli: does no longer exist in Django 1.8
 from django.core.cache import cache
 from django.core.urlresolvers import reverse
 from django.db import models

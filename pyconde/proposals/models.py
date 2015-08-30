@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 
 from django.db import models
 from django.conf import settings
-from django.contrib.markup.templatetags.markup import markdown
+# from django.contrib.markup.templatetags.markup import markdown
 from django.utils.functional import cached_property
 from django.utils.timezone import now
 from django.utils.translation import ugettext_lazy as _
@@ -108,11 +108,13 @@ class AbstractProposal(models.Model):
 
     @cached_property
     def abstract_rendered(self):
-        return markdown(self.abstract, 'safe')
+#       return markdown(self.abstract, 'safe')
+        return self.abstract
 
     @cached_property
     def description_rendered(self):
-        return markdown(self.description, 'safe')
+#       return markdown(self.description, 'safe')
+        return self.description
 
 
 class Proposal(AbstractProposal):

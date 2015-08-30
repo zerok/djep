@@ -4,7 +4,7 @@ from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.signals import user_logged_in
-from django.contrib.markup.templatetags.markup import markdown
+# from django.contrib.markup.templatetags.markup import markdown  ## no longer in Django 1.8
 from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _
 from django.dispatch import receiver
@@ -114,7 +114,8 @@ class Profile(models.Model):
 
     @cached_property
     def short_info_rendered(self):
-        return markdown(self.short_info, 'safe')
+#       return markdown(self.short_info, 'safe')
+        return self.short_info
 
 
 class UserListPlugin(CMSPlugin):
