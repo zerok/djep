@@ -105,7 +105,7 @@ class Base(Configuration):
         'haystack',
         #'tinymce', # If you want tinymce, add it in the settings.py file.
         'django_gravatar',
-        'social_auth',
+#       'social_auth',  ## gli: do we really need this?
         'gunicorn',
         'statici18n',
 
