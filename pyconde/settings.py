@@ -93,8 +93,8 @@ class Base(Configuration):
         'compressor',
         'djangocms_text_ckeditor',  # must be before 'cms'!
         'cms',
-        'cms.stacks',
-        'mptt',
+#       'cms.stacks',              ## gli: moved to stacks??
+        'treebeard',               ## gli: needed for djangocms 3.1
         'menus',
         'sekizai',
         'userprofiles',
