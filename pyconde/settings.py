@@ -500,10 +500,13 @@ class Base(Configuration):
 
     CACHES = values.DictValue({
         'default': {
-            'BACKEND': 'redis_cache.cache.RedisCache',
-            'LOCATION': 'localhost:6379:0',
+#           'BACKEND': 'redis_cache.cache.RedisCache',
+            'BACKEND': 'django_redis.cache.RedisCache',
+#           'LOCATION': 'localhost:6379:0',
+            'LOCATION': 'redis://localhost:6379/0',
             'OPTIONS': {
-                'PARSER_CLASS': 'redis.connection.HiredisParser'
+                'PARSER_CLASS': 'redis.connection.HiredisParser',
+#               'CLIENT_CLASS': 'django_redis.client.DefaultClient'
             },
         },
     })
