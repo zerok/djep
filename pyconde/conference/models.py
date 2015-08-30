@@ -9,7 +9,7 @@ from django.utils.translation import ugettext, ugettext_lazy as _
 
 from timezones.fields import TimeZoneField
 
-from pyconde import south_rules  # keep to make South still work
+# from pyconde import south_rules  # keep to make South still work ## gli: not used in 1.8
 
 
 CONFERENCE_CACHE = {}

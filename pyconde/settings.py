@@ -87,7 +87,7 @@ class Base(Configuration):
 #       'django.contrib.markup',   ## gli: no contrib.markup in django 1.8
         'sortedm2m',
         'crispy_forms',
-        'south',
+#       'south',                   ## gli: no south in django 1.8
         'easy_thumbnails',
         'filer',
         'compressor',

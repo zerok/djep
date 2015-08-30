@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from south.signals import post_migrate
+# from south.signals import post_migrate   ## gli: South not used with Django 1.8
 
 
 def update_permissions_after_migration(app, **kwargs):
@@ -14,4 +14,4 @@ def update_permissions_after_migration(app, **kwargs):
 
     create_permissions(get_app(app), get_models(), 2)
 
-post_migrate.connect(update_permissions_after_migration)
+# post_migrate.connect(update_permissions_after_migration)
