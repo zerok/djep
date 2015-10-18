@@ -7,7 +7,7 @@ cmsplugin-filer==0.10.2
 cmsplugin-news==0.4.4
 django-braces==1.8.1
 django-classy-tags==0.6.2
-django-cms==3.1.2
+django-cms==3.1.3
 djangocms-inherit==0.1 ## gli: for djangocms 3.0
 djangocms-googlemap==0.3 ## gli: for djangocms 3.0
 djangocms-link==1.6.2 ## gli: for djangocms 3.0

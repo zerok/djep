@@ -11,7 +11,7 @@ from django.utils.functional import cached_property
 from django.utils.translation import ugettext_lazy as _
 from django.utils.timezone import now
 
-from cms.models import CMSPlugin
+from cms.models.pluginmodel import CMSPlugin
 from sortedm2m.fields import SortedManyToManyField
 
 from ..proposals import models as proposal_models

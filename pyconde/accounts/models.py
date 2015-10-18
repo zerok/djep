@@ -11,7 +11,7 @@ from django.dispatch import receiver
 from django.db import models
 from django.db.models import Q
 
-from cms.models import CMSPlugin
+from cms.models.pluginmodel import CMSPlugin
 
 from easy_thumbnails.fields import ThumbnailerImageField
 from taggit.managers import TaggableManager
@@ -71,8 +71,7 @@ class Profile(models.Model):
     avatar = ThumbnailerImageField(
         _('avatar'), upload_to='avatars', null=True, blank=True,
         help_text=avatar_help_text,
-        validators=ValidatorChain().add(validators.avatar_dimension)
-                                   .add(validators.avatar_format, skip_on_error=True)
+        validators=[validators.avatar_dimension, validators.avatar_format]
     )
     num_accompanying_children = models.PositiveIntegerField(_('Number of accompanying children'),
         null=True, blank=True, default=0)

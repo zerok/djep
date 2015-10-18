@@ -8,8 +8,8 @@ import os
 import shutil
 import sys
 import tablib
-import StringIO
 
+from io import StringIO
 from itertools import chain, groupby
 from operator import attrgetter
 
@@ -507,7 +507,7 @@ class XMLExporterPentabarf(object):
         self.base_url = 'http://%s' % self.domain
 
     def export(self):
-        output = StringIO.StringIO()
+        output = StringIO()
         with etree.xmlfile(output) as xf:
             sessions = models.Session.objects \
                 .select_related('kind', 'audience_level', 'track',

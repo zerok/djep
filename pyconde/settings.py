@@ -153,16 +153,23 @@ class Base(Configuration):
         'cms.middleware.language.LanguageCookieMiddleware',
         'social_auth.middleware.SocialAuthExceptionMiddleware',
     ]
-
-    TEMPLATE_CONTEXT_PROCESSORS = Configuration.TEMPLATE_CONTEXT_PROCESSORS + (
-        'django.core.context_processors.debug',
-        'django.core.context_processors.request',
-        'sekizai.context_processors.sekizai',
-        'pyconde.conference.context_processors.current_conference',
-        'pyconde.reviews.context_processors.review_roles',
-        # 'pyconde.context_processors.less_settings',
-        'social_auth.context_processors.social_auth_backends',
-    )
+    TEMPLATES = [
+        {
+            'BACKEND': 'django.template.backends.django.DjangoTemplates',
+            'APP_DIRS': True,
+            'OPTIONS': {
+                'context_processors': Configuration.TEMPLATE_CONTEXT_PROCESSORS + (
+                    'django.template.context_processors.debug',
+                    'django.template.context_processors.request',
+                    'sekizai.context_processors.sekizai',
+                    'pyconde.conference.context_processors.current_conference',
+                    'pyconde.reviews.context_processors.review_roles',
+                    # 'pyconde.context_processors.less_settings',
+                    'social_auth.context_processors.social_auth_backends',
+                )
+            }
+        }
+    ]
 
     DATABASES = values.DatabaseURLValue(
             'sqlite:///{0}/djep.db'.format(BASE_DIR),
@@ -170,6 +177,27 @@ class Base(Configuration):
 
     # Disable south migrations during unittests
     SOUTH_TESTS_MIGRATE = False
+
+    MIGRATION_MODULES = {
+        'djangocms_googlemap': 'djangocms_googlemap.migrations_django',
+        'djangocms_inherit': 'djangocms_inherit.migrations_django',
+        'djangocms_snippet': 'djangocms_snippet.migrations_django',
+        'djangocms_style': 'djangocms_style.migrations_django',
+        'cmsplugin_filer_image': 'cmsplugin_filer_image.migrations_django',
+        'cmsplugin_filer_file': 'cmsplugin_filer_file.migrations_django',
+        'djangocms_link': 'djangocms_link.migrations_django',
+        'accounts': 'pyconde.accounts.migrations_django',
+        'schedule': 'pyconde.schedule.migrations_django',
+        'attendees': 'pyconde.attendees.migrations_django',
+        'conference': 'pyconde.conference.migrations_django',
+        'events': 'pyconde.events.migrations_django',
+        'lightningtalks': 'pyconde.lightningtalks.migrations_django',
+        'proposals': 'pyconde.proposals.migrations_django',
+        'reviews': 'pyconde.reviews.migrations_django',
+        'speakers': 'pyconde.speakers.migrations_django',
+        'sponsorship': 'pyconde.sponsorship.migrations_django',
+        'testimonials': 'pyconde.testimonials.migrations_django',
+    }
 
     FIXTURE_DIRS = (
         os.path.join(BASE_DIR, 'fixtures'),
@@ -273,6 +301,8 @@ class Base(Configuration):
     USERPROFILES_EMAIL_VERIFICATION_DONE_URL = 'userprofiles_profile_change'
 
     AUTH_PROFILE_MODULE = 'accounts.Profile'
+
+    AUTH_USER_MODEL = 'auth.User'
 
     ACCOUNTS_FALLBACK_TO_GRAVATAR = False
 

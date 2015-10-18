@@ -1,5 +1,10 @@
 # -*- coding: utf-8 -*-
-import xmlrpclib
+try:
+    from xmlrpc.client import ServerProxy
+    from xmlrpc.client import loads as xmlrpcloads
+except ImportError:
+    from xmlrpclib import Server as ServerProxy
+    from xmlrpclib import loads as xmlrpcloads
 import datetime
 import decimal
 import tablib
@@ -14,7 +19,7 @@ from django.http import HttpResponseRedirect
 from django.template.loader import render_to_string
 from django.utils.translation import gettext_lazy as _
 
-from redis_cache import get_redis_connection
+from django_redis import get_redis_connection
 
 from . import settings as app_settings
 from . import tasks
@@ -26,9 +31,9 @@ LOG = logging.getLogger(__name__)
 def validate_vatid(own_vatid, other_vatid):
     # TODO: Replace evatr or make it optional using a setting
     try:
-        server = xmlrpclib.Server('https://evatr.bff-online.de/')
+        server = ServerProxy('https://evatr.bff-online.de/')
         data = {}
-        for item in xmlrpclib.loads(server.evatrRPC(
+        for item in xmlrpcloads(server.evatrRPC(
                 own_vatid.replace(' ', ''),
                 other_vatid.replace(' ', ''), '', '', '', '', ''))[0]:
             data[item[0]] = item[1]
